@@ -1,1 +1,21 @@
 #!/usr/bin/env bash
+#
+# Summary: Get from/to section of an audio file
+#
+# Usage: audio-manipulation get-section <input-file> <dest-mp3-file> <from-time hh:mm:ss[.000]> <to-time hh:mm:ss[.000]>
+
+set -e
+#set -x
+
+
+# Inspired By: https://stackoverflow.com/a/44544953
+
+input_file=${1}
+dest_mp3=${2}
+from_time=${3}
+to_time=${4}
+temp_converted_mp3=temp.mp3
+
+audio-manipulation to-mp3 ${input_file} ${temp_converted_mp3} && \
+
+ffmpeg -i ${temp_converted_mp3} -ss ${from_time} -to ${to_time} -c copy ${dest_mp3}

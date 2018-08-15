@@ -1,1 +1,14 @@
 #!/usr/bin/env bash
+#
+# Summary: Convert input file into mp3 dest file
+#
+# Usage: audio-manipulation to-mp3 <input-file> <dest-mp3-file>
+
+set -e
+#set -x
+
+# Inspired By: https://coderwall.com/p/zbevoq/convert-m4a-to-mp3-with-ffmpeg
+
+input_file=${1}
+dest_mp3=${2}
+ffmpeg -i ${input_file} -acodec libmp3lame -aq 2 ${dest_mp3}

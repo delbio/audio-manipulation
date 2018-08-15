@@ -1,1 +1,18 @@
 #!/usr/bin/env bash
+#
+# Summary: Convert input file into mp3 dest file
+#
+# Usage: audio-manipulation concat <file_with_list_of_sources> <dest-mp3-file>
+#
+# file_with_list_of_sources format:
+# file '/path/to/first.mp3'
+# file '/path/to/second.mp3'
+
+set -e
+#set -x
+
+# Inspired By: https://superuser.com/a/1215832
+
+file_with_list_of_sources=${1}
+dest_file=${2}
+ffmpeg -f concat -i ${file_with_list_of_sources} -c copy ${dest_file}
